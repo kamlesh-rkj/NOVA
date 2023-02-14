@@ -74,9 +74,4 @@ def sendGmail(to,content):
     mail_server.sendmail(my_gmail__id,to,content)
     mail_server.close()
 
-
-def sendWhatsapp(reciverNumber,content):
-    print(f"reciver number {reciverNumber}")
-    text_to_speech("what should i send ")
-    content=speech_to_text().lower()
-    pywhatkit.sendwhatmsg_instantly(reciverNumber,content)
+    
