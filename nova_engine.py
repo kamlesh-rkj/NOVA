@@ -24,7 +24,7 @@ import smtplib
 
 
 # inetilizening text to speech block engien
-engine = pyttsx3.init('sapi5')
+engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voices',voices[0].id)
 rate = engine.getProperty('rate')
@@ -40,8 +40,8 @@ def speech_to_text():
             # recognizer.non_speaking_duration(1)
             # recognizer.operation_timeout()
             print("I AM LISINGING......")
-            recognizer.pause_threshold=2
-            audio = recognizer.listen(speech_source,timeout=20)
+            recognizer.pause_threshold=1
+            audio = recognizer.listen(speech_source)
             print("recognizing....")
             try:
                 data = recognizer.recognize_google(audio)

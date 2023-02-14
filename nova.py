@@ -119,7 +119,7 @@ if "nova" in start_nova or 1:
                     please tell me exactly what you want to search on wikipedia
                     ''')
 
-        ne.time.sleep(1)
+        ne.time.sleep(0.5)
 else:
     ne.text_to_speech("ohh shit,Nova System failear ".upper())
     ne.text_to_speech(start_nova)
