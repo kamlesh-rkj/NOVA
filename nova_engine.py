@@ -36,12 +36,12 @@ def speech_to_text():
     
     with sr.Microphone() as speech_source:
         while True:
-            # recognizer.adjust_for_ambient_noise(speech_source)
+            recognizer.adjust_for_ambient_noise(speech_source)
             # recognizer.non_speaking_duration(1)
             # recognizer.operation_timeout()
             print("I AM LISINGING......")
-            # recognizer.pause_threshold=1.5
-            audio = recognizer.listen(speech_source)
+            recognizer.pause_threshold=2
+            audio = recognizer.listen(speech_source,timeout=20)
             print("recognizing....")
             try:
                 data = recognizer.recognize_google(audio)
@@ -78,6 +78,7 @@ def sendGmail(to,content):
 
 def getReciverNumber():
     country_alias="+91"
+    print("plese provide me reciver number")
     text_to_speech("plese provide me reciver number")
     num=speech_to_text()
     while not num.isnumeric():
