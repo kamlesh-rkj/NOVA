@@ -84,6 +84,7 @@ if "nova" in start_nova or 1:
 
         elif "send email to kamlesh" in speech_data:
             try:
+                print("what should i send in email")
                 ne.text_to_speech("what should i send in email")
                 content=ne.speech_to_text().lower()
                 to='rkjrk515@gmail.com'.lower()
@@ -93,7 +94,7 @@ if "nova" in start_nova or 1:
             except Exception as e:
                 print(e)
                 ne.text_to_speech("sorry,i can not send Email ")
-        elif "send whatsapp message" in speech_data:
+        elif "send whatsapp " in speech_data or "send massage " in speech_data:
             to= ne.getReciverNumber()
             ne.text_to_speech("what should i send ")
             content=ne.speech_to_text().lower()
