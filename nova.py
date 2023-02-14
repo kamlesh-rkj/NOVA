@@ -94,11 +94,7 @@ if "nova" in start_nova or 1:
                 print(e)
                 ne.text_to_speech("sorry,i can not send Email ")
         elif "send whatsapp message" in speech_data:
-            country_alias="+91"
-            ne.text_to_speech("plese provide me reciver number")
-            num=ne.speech_to_text().lower()
-            to=country_alias.join(num)
-            print(f"reciver number {to}")
+            to= ne.getReciverNumber()
             ne.text_to_speech("what should i send ")
             content=ne.speech_to_text().lower()
             ne.pywhatkit.sendwhatmsg_instantly(to,content)

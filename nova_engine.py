@@ -36,18 +36,20 @@ def speech_to_text():
     
     with sr.Microphone() as speech_source:
         while True:
-            recognizer.adjust_for_ambient_noise(speech_source)
+            # recognizer.adjust_for_ambient_noise(speech_source)
+            # recognizer.non_speaking_duration(1)
+            # recognizer.operation_timeout()
             print("I AM LISINGING......")
-            recognizer.pause_threshold=3
+            # recognizer.pause_threshold=1.5
             audio = recognizer.listen(speech_source)
             print("recognizing....")
             try:
-                data = recognizer.recognize_google(audio,language='en-in')
+                data = recognizer.recognize_google(audio)
                 print(f"user said: {data}")
                 return str(data)
             except sr.UnknownValueError as e:
                 # print("not undarstanding")
-                text_to_speech("i am sorry i can not understand,please repeat")
+                text_to_speech("can not understand,please repeat")
             except sr.RequestError as e:
                 return str("No network hear,please connect to network ")
             except Exception as e:
@@ -74,4 +76,15 @@ def sendGmail(to,content):
     mail_server.sendmail(my_gmail__id,to,content)
     mail_server.close()
 
+def getReciverNumber():
+    country_alias="+91"
+    text_to_speech("plese provide me reciver number")
+    num=speech_to_text()
+    while not num.isnumeric():
+        text_to_speech("plese provide me reciver number")
+        num=speech_to_text().lower()
+    to=country_alias.join(num)
+    print(f"reciver number {to}")
+    return to
+        
     
