@@ -1,7 +1,7 @@
 import nova_engine as ne
 from waiting import waiting_mode   
 start_nova= ne.speech_to_text().lower()
-if "nova".lower() in start_nova or 1:
+if "nova".lower() in start_nova:
     from wish import wish_user
     wish_user()
     # ne.text_to_speech("  All  NOVA  System  is  online  ".upper()+"Wellcome To NOVA , How Can I Help You ?".upper())
@@ -123,6 +123,8 @@ if "nova".lower() in start_nova or 1:
                     i found many many information about {wiki_search},
                     please tell me exactly what you want to search on wikipedia
                     ''')
+                except ne.wikipedia.PageError as e:
+                    ne.text_to_speech(f"i found same error in searching for{wiki_search},please tell me in deep")
         elif "wait".lower() in speech_data:
             from win32gui import GetWindowText, GetForegroundWindow
             currentwindow=str(GetWindowText(GetForegroundWindow()))

@@ -81,20 +81,15 @@ def getReciverNumber():
     country_alias="+91"
     print("plese provide me reciver number\n")
     text_to_speech("plese provide me reciver number")
-    temp=speech_to_text().split(" ")
-    num=""
-    for i in temp:
-        num=num.join(i)
+    num=speech_to_text().replace(" ","")
+    num=num.strip()
     print(num)
     while not num.isnumeric():
         text_to_speech("plese provide me reciver number")
-        temp=speech_to_text().split(" ")
-        num=""
-        for i in temp:
-            num=num.join(i)
+        num=speech_to_text().replace(" ","")
+        num=num.strip()
         print(num)
-        num=speech_to_text().lower()
-    to=country_alias.join(num)
+    to=country_alias+num
     print(f"reciver number {to}\n")
     return to
         
