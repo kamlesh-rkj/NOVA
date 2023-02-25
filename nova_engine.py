@@ -35,14 +35,13 @@ def speech_to_text():
     recognizer=sr.Recognizer()
     
     with sr.Microphone() as speech_source:
-        while True:
-            recognizer.adjust_for_ambient_noise(speech_source)
-            # recognizer.non_speaking_duration(1)
-            # recognizer.operation_timeout()
+        recognizer.adjust_for_ambient_noise(speech_source)
+        recognizer.pause_threshold=2
+        recognizer.energy_threshold=240
+        # recognizer.non_speaking_duration(1)
+        # recognizer.operation_timeout()
+        while True: 
             print("I AM LISINGING......")
-            recognizer.pause_threshold=2
-            recognizer.energy_threshold=240
-
             audio = recognizer.listen(speech_source)
             print("recognizing....")
             try:
