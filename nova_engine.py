@@ -26,7 +26,7 @@ import smtplib
 # inetilizening text to speech block engien
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
-engine.setProperty('voices',voices[0].id)
+engine.setProperty('voices',voices[1].id)
 rate = engine.getProperty('rate')
 engine.setProperty('rate',150)
 
@@ -40,7 +40,9 @@ def speech_to_text():
             # recognizer.non_speaking_duration(1)
             # recognizer.operation_timeout()
             print("I AM LISINGING......")
-            recognizer.pause_threshold=1
+            recognizer.pause_threshold=2
+            recognizer.energy_threshold=240
+
             audio = recognizer.listen(speech_source)
             print("recognizing....")
             try:
@@ -80,9 +82,18 @@ def getReciverNumber():
     country_alias="+91"
     print("plese provide me reciver number\n")
     text_to_speech("plese provide me reciver number")
-    num=speech_to_text()
+    temp=speech_to_text().split(" ")
+    num=""
+    for i in temp:
+        num=num.join(i)
+    print(num)
     while not num.isnumeric():
         text_to_speech("plese provide me reciver number")
+        temp=speech_to_text().split(" ")
+        num=""
+        for i in temp:
+            num=num.join(i)
+        print(num)
         num=speech_to_text().lower()
     to=country_alias.join(num)
     print(f"reciver number {to}\n")
