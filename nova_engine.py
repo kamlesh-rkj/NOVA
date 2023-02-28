@@ -39,7 +39,7 @@ def speech_to_text():
     with sr.Microphone() as speech_source:
         recognizer.adjust_for_ambient_noise(speech_source)
         recognizer.pause_threshold = 2
-        recognizer.energy_threshold = 240
+        recognizer.energy_threshold = 250
         # recognizer.non_speaking_duration(1)
         # recognizer.operation_timeout()
         while True:
