@@ -1,6 +1,7 @@
 import nova_engine as ne
 from waiting import waiting_mode
 start_nova = ne.speech_to_text().lower()
+# print(start_nova)
 if "nova".lower() in start_nova:
     from wish import wish_user
     wish_user()
