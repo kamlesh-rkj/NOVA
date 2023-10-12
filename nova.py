@@ -11,8 +11,7 @@ if "nova".lower() in start_nova:
         # ..................normal command's...................
 
         if "time now".lower() in speech_data:
-            temp = ne.datetime.datetime.now().strftime(
-                "%I Hour, %M Minite , %S Secound , %p")
+            temp = ne.datetime.datetime.now().strftime( "%I Hour, %M Minite , %S Secound , %p")
             # print(time)
             ne.text_to_speech("current time is "+temp)
 
@@ -32,7 +31,7 @@ if "nova".lower() in start_nova:
                     i am one day old,
                     i have many mode's like normal mode , command mode , friend mode , hacking mode,..etc,
                     my defualt mode is friend mode,
-                    if i dont work properly , please contect my creater, kamlesh ratanpara,
+                    if i dont work properly , please contect my creater,
                     i provoide his contect number and gmail id in your terminal, please see there 
                 '''.upper())
             print("my creater gmail id is ".upper()+" rkjrk514@gmail.com")
@@ -49,18 +48,26 @@ if "nova".lower() in start_nova:
         elif "open notepad".lower() in speech_data:
             notepade_path = "C://Windows//System32//notepad.exe"
             ne.os.startfile(notepade_path)
+            ne.time.sleep(5)
+            waiting_mode()
 
         elif "open sublime text editor".lower() in speech_data:
             sublime_path = "C://Program Files//Sublime Text//sublime_text.exe"
             ne.os.startfile(sublime_path)
+            ne.time.sleep(5)
+            waiting_mode()
         elif "open android studio".lower() in speech_data:
             android_path = "C://Program Files//Android//Android Studio//bin//studio64.exe"
             ne.os.startfile(android_path)
+            ne.time.sleep(5)
+            waiting_mode()
         elif "play music".lower() in speech_data:
             song_path = "D://2//song"
             songs = ne.os.listdir(song_path)
             random_song_choies = ne.random.choice(songs)
             ne.os.startfile(ne.os.path.join(song_path, random_song_choies))
+            ne.time.sleep(5)
+            waiting_mode()
         # ..................NETWORK COMMAND'S...........................
         elif "open youtube".lower() in speech_data:
             ne.text_to_speech("which channel you want to see ".upper())
@@ -74,6 +81,8 @@ if "nova".lower() in start_nova:
             try:
                 ne.webbrowser.open_new_tab(
                     "https://www.youtube.com/@"+speech_data_temp2)
+                ne.time.sleep(5)
+                waiting_mode()
             except Exception as e:
                 pass
 
@@ -83,6 +92,8 @@ if "nova".lower() in start_nova:
             temp = ne.speech_to_text().lower()
             # temp=speech_dat
             ne.webbrowser.open_new_tab("https://www.google.com/search?q="+temp)
+            ne.time.sleep(5)
+            waiting_mode()
 
         elif "ip address".lower() in speech_data:
             ip = ne.requests.get('https://api.ipify.org').text

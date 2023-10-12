@@ -36,11 +36,11 @@ engine.setProperty('rate', 150)
 def speech_to_text():
     recognizer = sr.Recognizer()
     # print(sr.Microphone.list_working_microphones())
-    with sr.Microphone(device_index=4) as speech_source:
-        recognizer.adjust_for_ambient_noise(speech_source,duration=1)
+    with sr.Microphone(device_index=1) as speech_source:
+        recognizer.adjust_for_ambient_noise(speech_source)
         recognizer.dynamic_energy_threshold=True
-        # recognizer.energy_threshold =250 
-        # recognizer.non_speaking_duration(10.10)
+        recognizer.energy_threshold =250
+        # recognizer.non_speaking_duration(1000.0)
         # recognizer.operation_timeout()
         while True:
             print("I AM LISINGING......")
@@ -48,12 +48,13 @@ def speech_to_text():
                 audio =  recognizer.listen(speech_source)
                 print("recognizing....")
                 # data =recognizer.recognize_amazon(audio)
-                data= recognizer.recognize_google_cloud(audio)
+                # data= recognizer.recognize_google_cloud(audio)
+                data= recognizer.recognize_google(audio)
                 print("recognized....")
                 print(f"user said: {data}")
                 return str(data)
             except sr.UnknownValueError as e:
-                print(data)
+                # print(data)
                 # print("not undarstanding")
                 text_to_speech("can not understand,please repeat")
             except sr.RequestError as e:
