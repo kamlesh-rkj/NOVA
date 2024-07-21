@@ -36,7 +36,7 @@ engine.setProperty('rate', 150)
 def speech_to_text():
     recognizer = sr.Recognizer()
     # print(sr.Microphone.list_working_microphones())
-    with sr.Microphone(device_index=1) as speech_source:
+    with sr.Microphone(device_index=0) as speech_source:
         recognizer.adjust_for_ambient_noise(speech_source)
         recognizer.dynamic_energy_threshold=True
         recognizer.energy_threshold =250
@@ -100,3 +100,42 @@ def getReciverNumber():
     to = country_alias+num
     print(f"reciver number {to}\n")
     return to
+
+def getPersonName():
+    print("plese provide me Person name\n")
+    text_to_speech("plese provide me Person name")
+    name = speech_to_text().replace(" ", "")
+    name = name.strip()
+    print(name)
+    while not name.isalpha():
+        text_to_speech("plese provide me Person name")
+        name = speech_to_text().replace(" ", "")
+        name = name.strip()
+        print(name)
+    print(f"reciver name {name}\n")
+    isnamecorrect = 0
+    counttry=3
+    while isnamecorrect == 0 and counttry > 0:
+        text_to_speech(f"reciver name is {name}, is it correct?")
+        isnamecorrectRes = speech_to_text()
+        if "yes".lower() in isnamecorrectRes:
+            isnamecorrect = 1
+            break
+        else:
+            counttry-=1
+            if counttry == 1:
+                 text_to_speech("there is issue in my AI System Engine")
+                 text_to_speech("so you can provide name in terminal")
+                 name=input("Enter name here :")
+                 break
+            
+            text_to_speech("please provide me correct name")
+            name = speech_to_text().replace(" ", "")
+            name = name.strip()
+            print(name)
+            while not name.isalpha():
+                text_to_speech("plese provide me Person name")
+                name = speech_to_text().replace(" ", "")
+                name = name.strip()
+            
+    return name

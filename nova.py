@@ -1,5 +1,7 @@
+import subprocess
 import nova_engine as ne
 from waiting import waiting_mode
+# from WhatsappMonitor import MonitorPerson
 start_nova = ne.speech_to_text().lower()
 # print(start_nova)
 if "nova".lower() in start_nova:
@@ -86,7 +88,7 @@ if "nova".lower() in start_nova:
             except Exception as e:
                 pass
 
-        elif " open website".lower() in speech_data:
+        elif "open website".lower() in speech_data:
             ne.text_to_speech("your webbrowser is started ".upper())
             ne.text_to_speech("tell me which website you want to open".upper())
             temp = ne.speech_to_text().lower()
@@ -123,6 +125,12 @@ if "nova".lower() in start_nova:
             ytsong_name = ne.speech_to_text().lower()
             ne.pywhatkit.playonyt(ytsong_name)
             ne.time.sleep(5)
+            waiting_mode()
+        elif "Monitor person on whatsapp".lower() in speech_data:
+            
+            name= ne.getPersonName()
+            import WhatsappMonitor
+            subprocess.Popen(["python", "/d:/NOVA/whatsapp_monitor.py"])
             waiting_mode()
         elif "wikipedia".lower() in speech_data:
             ne.text_to_speech("what should i search on wikipedia")
